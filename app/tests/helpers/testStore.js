@@ -1,15 +1,11 @@
 const testStore = (initialData = []) => {
-  let data = initialData
+  let data = [].concat(initialData)
 
   return {
-    load () {
-      return data
-    },
-
-    add (ask) {
-      data = data.concat(ask)
-      return true
-    },
+    length: data.length,
+    key: (i) => data[i].timestamp,
+    getItem: (key) => JSON.stringify(data.find((ele) => ele.timestamp === key)),
+    setItem: (key, item) => { return true },
   }
 }
 

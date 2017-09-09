@@ -1,5 +1,4 @@
-
-const browserRepository = (api) => {
+const browserRepository = (api = window.localStorage) => {
   return {
     load () {
       let retVal = []
@@ -14,17 +13,15 @@ const browserRepository = (api) => {
       return retVal
     },
 
-    add (ask) {
-      const newItem = Object.assign(
-        ask,
-        { timestamp: Date.now() },
-      )
+    save (item) {
+      const newItem = Object.assign({ timestamp: Date.now() }, item)
 
-      api.setItem(newItem.timestamp, JSON.stringify(newItem))
-      const event = new window.Event('askUpdated')
-      window.dispatchEvent(event)
-
-      return true
+      try {
+        api.setItem(newItem.timestamp, JSON.stringify(newItem))
+        return true
+      } catch (e) {
+        throw (e)
+      }
     },
   }
 }

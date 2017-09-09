@@ -1,19 +1,22 @@
-const Repository = require('./repository')
 const store = require('./browserStore')
-const capitalize = require('./utils').capitalize
-const sortDesc = require('./utils').sortDesc
-const calcScore = require('./calcScore')
+const utils = require('./utils')
+const createAsks = require('./models/asks')
 
-const db = Repository(store(window.localStorage))
+const handleSubmit = (Asks) => (event) => {
+  event.preventDefault()
 
-const handleSubmit = (db) => (event) => {
   const ask = document.getElementsByName('ask')[0].value
   const askee = document.getElementsByName('askee')[0].value
-  const status = capitalize(event.target.id)
+  const status = utils.capitalize(event.target.id)
 
-  db.add({ ask, askee, status })
+  try {
+    Asks.create({ ask, askee, status })
+    const event = new window.Event('askUpdated')
+    window.dispatchEvent(event)
+  } catch (e) {
+    console.log(e)
+  }
 
-  event.preventDefault()
   return false
 }
 
@@ -48,23 +51,23 @@ const createAskHtml = (item) => {
   return ele
 }
 
-const render = (db) => {
-  const asks = sortDesc('timestamp')(db.load())
+const render = (Asks) => {
+  const asks = Asks.all()
 
   const score = document.getElementById('score')
   const scoreNum = score.getElementsByTagName('span')[0]
-  scoreNum.innerHTML = calcScore(asks.map((ask) => ask.status))
+  scoreNum.innerHTML = Asks.score()
 
   const askList = document.getElementById('asks')
   askList.innerHTML = ''
-  asks.forEach((ask) => {
+  utils.sortDesc('timestamp')(asks).forEach((ask) => {
     const askItem = createAskHtml(ask)
     askList.appendChild(askItem)
   })
 }
 
-const initListeners = (db) => {
-  const handler = handleSubmit(db)
+const initListeners = (Asks) => {
+  const handler = handleSubmit(Asks)
 
   const acceptedButton = document.getElementById('accepted')
   acceptedButton.addEventListener('click', (event) => {
@@ -77,13 +80,16 @@ const initListeners = (db) => {
   })
 
   window.addEventListener('askUpdated', (event) => {
-    render(db)
+    render(Asks)
   })
 }
 
 const shell = (db) => {
-  initListeners(db)
-  render(db)
+  const Asks = createAsks(db)
+
+  initListeners(Asks)
+  render(Asks)
 }
 
+const db = store()
 shell(db)
