@@ -5,7 +5,7 @@ const browserRepository = (api) => {
       let retVal = []
 
       for (let i = 0, l = api.length; i < l; i++) {
-        const key = api.key[i]
+        const key = api.key(i)
         if (key !== 'loglevel') {
           retVal = retVal.concat(JSON.parse(api.getItem(key)))
         }
@@ -21,6 +21,8 @@ const browserRepository = (api) => {
       )
 
       api.setItem(newItem.timestamp, JSON.stringify(newItem))
+      const event = new window.Event('askUpdated')
+      window.dispatchEvent(event)
 
       return true
     },
