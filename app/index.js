@@ -1,4 +1,4 @@
-const store = require('./browserStore')
+const db = require('./browserStore')()
 const utils = require('./utils')
 const createAsks = require('./models/asks')
 
@@ -91,5 +91,4 @@ const shell = (db) => {
   render(Asks)
 }
 
-const db = store()
 shell(db)
