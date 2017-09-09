@@ -2,6 +2,7 @@ const Repository = require('./repository')
 const store = require('./browserStore')
 const capitalize = require('./utils').capitalize
 const sortDesc = require('./utils').sortDesc
+const calcScore = require('./calcScore')
 
 const db = Repository(store(window.localStorage))
 
@@ -52,7 +53,7 @@ const render = (db) => {
 
   const score = document.getElementById('score')
   const scoreNum = score.getElementsByTagName('span')[0]
-  scoreNum.innerHTML = '0'
+  scoreNum.innerHTML = calcScore(asks.map((ask) => ask.status))
 
   const askList = document.getElementById('asks')
   askList.innerHTML = ''
