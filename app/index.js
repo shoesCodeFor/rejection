@@ -7,7 +7,7 @@ const handleSubmit = (Asks) => (event) => {
 
   const ask = document.getElementsByName('ask')[0].value
   const askee = document.getElementsByName('askee')[0].value
-  const status = utils.capitalize(event.target.id)
+  const status = event.target.getAttribute('data-status')
 
   try {
     Asks.create({ ask, askee, status })
