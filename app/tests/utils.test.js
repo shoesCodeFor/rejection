@@ -17,7 +17,7 @@ test('it uppercases the first character of the word', (expect) => {
 
 test('---- sortDesc()', (expect) => { expect.end() })
 
-test('it sorts numerical record attribute in descending orser', (expect) => {
+test('it sorts numerical record attribute in descending order', (expect) => {
   const expected = [
     { timestamp: 3 },
     { timestamp: 2 },
