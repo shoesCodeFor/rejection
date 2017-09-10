@@ -35,6 +35,7 @@ nav {
 }
 
 nav > * {
+  background-color: #fff;
   border-top: 3px solid black;
   border-left: 3px solid black;
   border-right: 3px solid black;
@@ -43,6 +44,16 @@ nav > * {
   font-size: 2rem;
   padding: 1.25rem 2rem;
   width: 42%;
+}
+
+nav .active {
+  background-color: #cfcfcf;
+  font-weight: bold;
+}
+
+#content {
+  background-color: #cfcfcf;
+  padding: 2rem 0;
 }
 
 #content > * {
