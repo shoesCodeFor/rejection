@@ -1,4 +1,101 @@
 body {
+  border: 1px solid black;
   color: black;
   font-size: 16px;
+}
+
+header > * {
+  margin: 1rem 2rem;
+}
+
+header,
+#content {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+header #score,
+header #streak {
+  font-size: 2rem;
+}
+
+#score span,
+#streak span {
+  font-weight: bold;
+}
+
+nav {
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+nav > * {
+  border-top: 3px solid black;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 2rem;
+  padding: 1.25rem 2rem;
+  width: 42%;
+}
+
+#content form > div {
+  display: block;
+  margin: 0 auto;
+}
+
+#content form input {
+  font-size: 4rem;
+  display: block;
+  margin: 1.5rem auto;
+  padding: 0.75rem 1rem;
+}
+
+#content form button {
+  cursor: pointer;
+  display: block;
+  font-size: 2.5rem;
+  min-width: 50%;
+  margin: 0 auto 1rem;
+  padding: 1.5rem 1rem;
+}
+
+#asks {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+#asks > * {
+  font-size: 1.75rem;
+}
+
+.ask {
+  margin-bottom: 1.25rem;
+}
+
+.ask span {
+  display: inline-block;
+  margin-right: 1.25rem;
+}
+
+.ask span.date {
+  min-width: 8rem;
+}
+
+.ask span.ask {
+  min-width: 25rem;
+}
+
+.ask span.askee {
+  min-width: 10rem;
+}
+
+.ask span.status {
+  min-width: 8rem;
 }

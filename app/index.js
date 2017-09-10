@@ -28,6 +28,7 @@ const formattedAskTimestamp = (ts) => {
 
 const createAskHtml = (item) => {
   const ele = document.createElement('li')
+  ele.className = 'ask'
 
   const date = document.createElement('span')
   date.className = 'date'
