@@ -3,6 +3,18 @@ const db = require('./browserStore')()
 const utils = require('./utils')
 const createAsks = require('./models/asks')
 
+const contentHandler = (id) => {
+  if (id === 'form_tab') {
+    document.getElementById('new_ask').classList.add('active');
+    document.getElementById('asks').classList.remove('active');
+  }
+
+  if (id === 'history_tab') {
+    document.getElementById('asks').classList.add('active');
+    document.getElementById('new_ask').classList.remove('active');
+  }
+}
+
 const handleSubmit = (Asks) => (event) => {
   event.preventDefault()
 
@@ -84,6 +96,17 @@ const initListeners = (Asks) => {
   window.addEventListener('askUpdated', (event) => {
     render(Asks)
   })
+
+  const newAskTab = document.getElementById('form_tab')
+  newAskTab.addEventListener('click', (event) => {
+    contentHandler(event.target.id)
+  })
+
+  const historyTab = document.getElementById('history_tab')
+  historyTab.addEventListener('click', (event) => {
+    contentHandler(event.target.id)
+  })
+
 }
 
 const shell = (db) => {
