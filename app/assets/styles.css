@@ -1,7 +1,9 @@
 body {
   color: black;
-  font-family: serif;
-  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
   height: 100vh;
 }
 
@@ -11,56 +13,54 @@ header > * {
 
 header,
 #content {
-  max-width: 1024px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 header h1 {
-  font-family: sans-serif;
-  font-size: 5rem;
+  font-size: 3rem;
+  font-weight: 200;
   text-align: center;
   text-transform: uppercase;
 }
 
-header #score,
-header #streak {
-  font-size: 2rem;
+header > div {
+  font-size: 1.25rem;
 }
 
 #score span,
 #streak span {
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 900;
 }
 
 nav {
-  margin: 0 auto;
-  max-width: 1024px;
+  font-size: 1rem;
+  font-weight: 300;
 }
 
 nav > * {
   background-color: #fff;
-  border-top: 3px solid black;
-  border-left: 3px solid black;
-  border-bottom: 3px solid black;
-  border-right: 3px solid black;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
   cursor: pointer;
   display: inline-block;
-  font-size: 2rem;
-  padding: 1.25rem 2rem;
-  width: 42%;
+  padding: 1rem 1.25rem;
+  width: 37%;
 }
 
 nav .active {
   background-color: #cfcfcf;
-  border-bottom: 3px solid #cfcfcf;
-  font-weight: bold;
+  border-bottom: 2px solid #cfcfcf;
+  font-weight: 600;
 }
 
 #content {
   background-color: #cfcfcf;
-  border-left: 3px solid black;
-  border-bottom: 3px solid black;
-  border-right: 3px solid black;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
   padding: 2rem 0;
 }
 
@@ -78,37 +78,35 @@ nav .active {
 }
 
 #content form input {
-  font-size: 4rem;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 500;
   display: block;
   margin: 1.5rem auto;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem;
 }
 
 #content form button {
   cursor: pointer;
   display: block;
-  font-size: 2.5rem;
+  font-size: 1rem;
   min-width: 50%;
   margin: 0 auto 1rem;
-  padding: 1.5rem 1rem;
+  padding: 0.75rem 0;
 }
 
 #asks {
+  font-size: 1.25rem;
   list-style: none;
   margin-top: 1.5rem;
 }
 
-#asks > * {
-  font-size: 1.75rem;
-}
-
 .ask {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .ask span {
   display: inline-block;
-  margin-right: 1.25rem;
 }
 
 .ask span.date {
@@ -125,4 +123,80 @@ nav .active {
 
 .ask span.status {
   min-width: 8rem;
+}
+
+@media only screen and (min-width: 401px) {
+  body {
+    font-size: 16px;
+  }
+
+  header,
+  #content {
+    margin: 0 auto;
+    max-width: 1024px;
+  }
+
+  header h1 {
+    font-size: 5rem;
+  }
+
+  header > div {
+    font-size: 1.75rem;
+  }
+
+  #score span,
+  #streak span {
+    font-size: 2rem;
+  }
+
+  nav {
+    font-size: 1.25rem;
+    margin: 0 auto;
+    max-width: 1024px;
+  }
+
+  nav > * {
+    padding: 1.25rem 2rem;
+    width: 42%;
+  }
+
+  #content form input {
+    font-size: 4rem;
+    margin: 1.5rem auto;
+    padding: 0.75rem 1rem;
+  }
+
+  #content form button {
+    font-size: 1.75rem;
+    margin: 0 auto 1rem;
+    padding: 1.5rem 1rem;
+  }
+
+  #asks {
+    font-size: 1.75rem;
+  }
+
+  .ask {
+    margin-bottom: 1.25rem;
+  }
+
+  .ask span {
+    margin-right: 1.25rem;
+  }
+
+  .ask span.date {
+    min-width: 8rem;
+  }
+
+  .ask span.ask {
+    min-width: 25rem;
+  }
+
+  .ask span.askee {
+    min-width: 10rem;
+  }
+
+  .ask span.status {
+    min-width: 8rem;
+  }
 }

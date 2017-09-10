@@ -62,10 +62,10 @@ const createAskHtml = (item) => {
   askee.innerHTML = item.askee
   ele.appendChild(askee)
 
-  const status = document.createElement('span')
-  status.className = 'status'
-  status.innerHTML = item.status
-  ele.appendChild(status)
+  // const status = document.createElement('span')
+  // status.className = 'status'
+  // status.innerHTML = item.status
+  // ele.appendChild(status)
 
   return ele
 }
