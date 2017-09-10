@@ -1,4 +1,5 @@
 body {
+  box-sizing: border-box;
   color: black;
   font-family: 'Raleway', sans-serif;
   font-size: 14px;
@@ -7,122 +8,155 @@ body {
   height: 100vh;
 }
 
-header > * {
-  margin: 1rem 2rem;
-}
-
-header,
-#content {
-  width: 100%;
+header {
+  color: #ef5350;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 header h1 {
   font-size: 3rem;
   font-weight: 200;
+  margin: 0;
+  padding: 0;
   text-align: center;
   text-transform: uppercase;
 }
 
-header > div {
-  font-size: 1.25rem;
+.stats {
+  display: flex;
 }
 
-#score span,
-#streak span {
+.stats > div {
+  flex-grow: 1;
+  font-size: 1.25rem;
+  padding: 0.75rem 0;
+  text-align: center;
+}
+
+.stats > div:first-child {
+  padding-left: 0.5rem;
+  text-align: left;
+}
+
+.stats > div:last-child {
+  padding-right: 0.5rem;
+  text-align: right;
+}
+
+.score span,
+.streak span {
   font-size: 1.5rem;
   font-weight: 900;
 }
 
 nav {
+  display: flex;
   font-size: 1rem;
-  font-weight: 300;
-}
-
-nav > * {
-  background-color: #fff;
-  border-top: 2px solid black;
-  border-left: 2px solid black;
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
-  cursor: pointer;
-  display: inline-block;
-  padding: 1rem 1.25rem;
-  width: 37%;
-}
-
-nav .active {
-  background-color: #cfcfcf;
-  border-bottom: 2px solid #cfcfcf;
   font-weight: 600;
+  margin-top: 1rem;
 }
 
-#content {
-  background-color: #cfcfcf;
-  border-left: 2px solid black;
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
-  padding: 2rem 0;
-}
-
-#content > * {
-  display: none;
-}
-
-#content .active {
-  display: block;
-}
-
-#content form > div {
-  display: block;
-  margin: 0 auto;
-}
-
-#content form input {
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: 500;
-  display: block;
-  margin: 1.5rem auto;
-  padding: 0.5rem;
-}
-
-#content form button {
+nav > div {
+  background-color: #fff;
+  border-top: 1px solid #9a9a9a;
+  border-left: 1px solid #9a9a9a;
+  border-bottom: 2px solid #9a9a9a;
+  border-right: 1px solid #9a9a9a;
   cursor: pointer;
+  flex-grow: 1;
+  opacity: 0.33;
+  padding: 1rem 1.25rem;
+}
+
+nav > div.active {
+  border-top: 2px solid #9a9a9a;
+  border-bottom: none;
+  opacity: 1;
+}
+
+.new-ask,
+.asks {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+.active {
+  border-left: 2px solid #9a9a9a;
+  border-bottom: 2px solid #9a9a9a;
+  border-right: 2px solid #9a9a9a;
+  margin: 0;
+}
+
+.new-ask.active,
+.asks.active {
   display: block;
+  padding: 1rem 0.5rem;
+}
+
+.new-ask input {
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.new-ask input:nth-child(1) {
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.new-ask input:nth-child(2) {
+  margin-bottom: 5rem;
+}
+
+.new-ask .actions {
+  display: flex;
+  padding: 0;
+}
+
+.new-ask button {
+  border: none;
+  cursor: pointer;
+  color: #37474f;
+  display: block;
+  flex-grow: 1;
   font-size: 1rem;
-  min-width: 50%;
-  margin: 0 auto 1rem;
+  font-weight: 500;
   padding: 0.75rem 0;
 }
 
-#asks {
+.new-ask button:first-child {
+  margin-right: 1rem;
+  background-color: #80deea;
+}
+
+.new-ask button:last-child {
+  background-color: #c5e1a5;
+}
+
+.asks {
   font-size: 1.25rem;
   list-style: none;
-  margin-top: 1.5rem;
 }
 
-.ask {
-  margin-bottom: 1rem;
+.ask-entry {
+  border-bottom: 1px solid #444;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 0.5rem;
 }
 
-.ask span {
-  display: inline-block;
+.ask-entry.accepted {
+  background-color: #80deea;
 }
 
-.ask span.date {
-  min-width: 8rem;
+.ask-entry.rejected {
+  background-color: #c5e1a5;
 }
 
-.ask span.ask {
-  min-width: 25rem;
-}
-
-.ask span.askee {
-  min-width: 10rem;
-}
-
-.ask span.status {
-  min-width: 8rem;
+.ask-entry span {
+  margin-right: 1.0rem;
+  margin-bottom: 0.5rem;
 }
 
 @media only screen and (min-width: 401px) {
@@ -130,10 +164,14 @@ nav .active {
     font-size: 16px;
   }
 
-  header,
-  #content {
+  .container {
     margin: 0 auto;
     max-width: 1024px;
+  }
+
+  header {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
   }
 
   header h1 {
@@ -144,59 +182,61 @@ nav .active {
     font-size: 1.75rem;
   }
 
-  #score span,
-  #streak span {
+  .stats > div:first-child {
+    padding-left: 1rem;
+  }
+
+  .stats > div:last-child {
+    padding-right: 1rem;
+  }
+
+  .score span,
+  .streak span {
     font-size: 2rem;
   }
 
   nav {
     font-size: 1.25rem;
-    margin: 0 auto;
-    max-width: 1024px;
+    margin-top: 1.75rem;
   }
 
-  nav > * {
-    padding: 1.25rem 2rem;
-    width: 42%;
+  .new-ask.active,
+  .asks.active {
+    padding: 2rem 1rem;
   }
 
-  #content form input {
+  .new-ask input {
     font-size: 4rem;
-    margin: 1.5rem auto;
-    padding: 0.75rem 1rem;
   }
 
-  #content form button {
+  .new-ask input:nth-child(1) {
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+  }
+
+  .new-ask input:nth-child(2) {
+    margin-bottom: 8rem;
+  }
+
+  .new-ask button {
     font-size: 1.75rem;
-    margin: 0 auto 1rem;
     padding: 1.5rem 1rem;
   }
 
-  #asks {
+  .new-ask button:first-child {
+    margin-right: 2rem;
+  }
+
+  .asks {
     font-size: 1.75rem;
   }
 
-  .ask {
-    margin-bottom: 1.25rem;
+  .ask-entry {
+    padding: 1rem 1rem;
   }
 
-  .ask span {
-    margin-right: 1.25rem;
-  }
-
-  .ask span.date {
-    min-width: 8rem;
-  }
-
-  .ask span.ask {
-    min-width: 25rem;
-  }
-
-  .ask span.askee {
-    min-width: 10rem;
-  }
-
-  .ask span.status {
-    min-width: 8rem;
+  .ask-entry span {
+    margin-right: 1.75rem;
+    margin-bottom: 1rem;
   }
 }

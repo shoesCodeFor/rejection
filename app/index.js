@@ -1,22 +1,24 @@
+require('./assets/normalize.css')
 require('./assets/styles.css')
 const db = require('./browserStore')()
 const utils = require('./utils')
 const createAsks = require('./models/asks')
 
 const contentHandler = (id) => {
-  if (id === 'form_tab') {
-    document.getElementById('form_tab').classList.add('active')
-    document.getElementById('new_ask').classList.add('active')
+  if (id === 'form-tab') {
+    document.getElementsByClassName('form-tab')[0].classList.add('active')
+    document.getElementsByClassName('new-ask')[0].classList.add('active')
 
-    document.getElementById('history_tab').classList.remove('active')
-    document.getElementById('asks').classList.remove('active')
+    document.getElementsByClassName('history-tab')[0].classList.remove('active')
+    document.getElementsByClassName('asks')[0].classList.remove('active')
   }
 
-  if (id === 'history_tab') {
-    document.getElementById('history_tab').classList.add('active')
-    document.getElementById('asks').classList.add('active')
-    document.getElementById('form_tab').classList.remove('active')
-    document.getElementById('new_ask').classList.remove('active')
+  if (id === 'history-tab') {
+    document.getElementsByClassName('history-tab')[0].classList.add('active')
+    document.getElementsByClassName('asks')[0].classList.add('active')
+
+    document.getElementsByClassName('form-tab')[0].classList.remove('active')
+    document.getElementsByClassName('new-ask')[0].classList.remove('active')
   }
 }
 
@@ -45,27 +47,22 @@ const formattedAskTimestamp = (ts) => {
 
 const createAskHtml = (item) => {
   const ele = document.createElement('li')
-  ele.className = 'ask'
+  ele.className = `ask-entry ${item.status.toLowerCase()}`
 
   const date = document.createElement('span')
   date.className = 'date'
   date.innerHTML = formattedAskTimestamp(item.timestamp)
   ele.appendChild(date)
 
-  const ask = document.createElement('span')
-  ask.className = 'ask'
-  ask.innerHTML = item.ask
-  ele.appendChild(ask)
-
   const askee = document.createElement('span')
   askee.className = 'askee'
   askee.innerHTML = item.askee
   ele.appendChild(askee)
 
-  // const status = document.createElement('span')
-  // status.className = 'status'
-  // status.innerHTML = item.status
-  // ele.appendChild(status)
+  const ask = document.createElement('span')
+  ask.className = 'ask'
+  ask.innerHTML = item.ask
+  ele.appendChild(ask)
 
   return ele
 }
@@ -73,14 +70,14 @@ const createAskHtml = (item) => {
 const render = (Asks) => {
   const asks = Asks.all()
 
-  const score = document.getElementById('score')
+  const score = document.getElementsByClassName('score')[0]
   const scoreNum = score.getElementsByTagName('span')[0]
   scoreNum.innerHTML = Asks.score()
 
-  const historyTab = document.getElementById('history_tab')
+  const historyTab = document.getElementsByClassName('history-tab')[0]
   historyTab.innerHTML = `History (${asks.length})`
 
-  const askList = document.getElementById('asks')
+  const askList = document.getElementsByClassName('asks')[0]
   askList.innerHTML = ''
   utils.sortDesc('timestamp')(asks).forEach((ask) => {
     const askItem = createAskHtml(ask)
@@ -91,12 +88,12 @@ const render = (Asks) => {
 const initListeners = (Asks) => {
   const handler = handleSubmit(Asks)
 
-  const acceptedButton = document.getElementById('accepted')
+  const acceptedButton = document.getElementsByClassName('accepted')[0]
   acceptedButton.addEventListener('click', (event) => {
     handler(event)
   })
 
-  const rejectedButton = document.getElementById('rejected')
+  const rejectedButton = document.getElementsByClassName('rejected')[0]
   rejectedButton.addEventListener('click', (event) => {
     handler(event)
   })
@@ -105,14 +102,14 @@ const initListeners = (Asks) => {
     render(Asks)
   })
 
-  const newAskTab = document.getElementById('form_tab')
+  const newAskTab = document.getElementsByClassName('form-tab')[0]
   newAskTab.addEventListener('click', (event) => {
-    contentHandler(event.target.id)
+    contentHandler('form-tab')
   })
 
-  const historyTab = document.getElementById('history_tab')
+  const historyTab = document.getElementsByClassName('history-tab')[0]
   historyTab.addEventListener('click', (event) => {
-    contentHandler(event.target.id)
+    contentHandler('history-tab')
   })
 }
 
