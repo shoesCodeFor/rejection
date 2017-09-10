@@ -1,3 +1,4 @@
+const styles = require('./assets/styles.css')
 const db = require('./browserStore')()
 const utils = require('./utils')
 const createAsks = require('./models/asks')

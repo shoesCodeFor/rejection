@@ -1,6 +1,7 @@
 const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './app/index.html',
@@ -15,11 +16,26 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
-    //    loaders: [
-    //      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-    //    ],
+    rules: [
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
+      }
+    ]
+    //loaders: [
+    //{
+    //test: /\.css$/,
+    //loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+    //},
+    //],
   },
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [
+    HtmlWebpackPluginConfig,
+    new ExtractTextPlugin('[name].css'),
+  ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: process.env.PORT || 9000,
