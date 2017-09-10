@@ -1,22 +1,22 @@
-const styles = require('./assets/styles.css')
+require('./assets/styles.css')
 const db = require('./browserStore')()
 const utils = require('./utils')
 const createAsks = require('./models/asks')
 
 const contentHandler = (id) => {
   if (id === 'form_tab') {
-    document.getElementById('form_tab').classList.add('active');
-    document.getElementById('new_ask').classList.add('active');
+    document.getElementById('form_tab').classList.add('active')
+    document.getElementById('new_ask').classList.add('active')
 
-    document.getElementById('history_tab').classList.remove('active');
-    document.getElementById('asks').classList.remove('active');
+    document.getElementById('history_tab').classList.remove('active')
+    document.getElementById('asks').classList.remove('active')
   }
 
   if (id === 'history_tab') {
-    document.getElementById('history_tab').classList.add('active');
-    document.getElementById('asks').classList.add('active');
-    document.getElementById('form_tab').classList.remove('active');
-    document.getElementById('new_ask').classList.remove('active');
+    document.getElementById('history_tab').classList.add('active')
+    document.getElementById('asks').classList.add('active')
+    document.getElementById('form_tab').classList.remove('active')
+    document.getElementById('new_ask').classList.remove('active')
   }
 }
 
@@ -114,7 +114,6 @@ const initListeners = (Asks) => {
   historyTab.addEventListener('click', (event) => {
     contentHandler(event.target.id)
   })
-
 }
 
 const shell = (db) => {
