@@ -77,6 +77,9 @@ const render = (Asks) => {
   const scoreNum = score.getElementsByTagName('span')[0]
   scoreNum.innerHTML = Asks.score()
 
+  const historyTab = document.getElementById('history_tab')
+  historyTab.innerHTML = `History (${asks.length})`
+
   const askList = document.getElementById('asks')
   askList.innerHTML = ''
   utils.sortDesc('timestamp')(asks).forEach((ask) => {
