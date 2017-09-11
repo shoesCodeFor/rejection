@@ -31,6 +31,7 @@ const handleSubmit = (Asks) => (event) => {
 
   try {
     Asks.create({ ask, askee, status })
+
     const event = new window.Event('askUpdated')
     window.dispatchEvent(event)
   } catch (e) {
@@ -104,6 +105,12 @@ const initListeners = (Asks) => {
 
   window.addEventListener('askUpdated', (event) => {
     render(Asks)
+
+    const input1 = document.getElementsByTagName('input')[0]
+    input1.value = ''
+
+    const input2 = document.getElementsByTagName('input')[1]
+    input2.value = ''
   })
 
   const newAskTab = document.getElementsByClassName('form-tab')[0]
