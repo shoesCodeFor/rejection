@@ -74,6 +74,10 @@ const render = (Asks) => {
   const scoreNum = score.getElementsByTagName('span')[0]
   scoreNum.innerHTML = Asks.score()
 
+  const streak = document.getElementsByClassName('streak')[0]
+  const streakNum = streak.getElementsByTagName('span')[0]
+  streakNum.innerHTML = Asks.streak()
+
   const historyTab = document.getElementsByClassName('history-tab')[0]
   historyTab.innerHTML = `History (${asks.length})`
 
