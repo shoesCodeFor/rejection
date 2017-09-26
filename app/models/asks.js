@@ -3,18 +3,22 @@ const createAsk = require('./ask')
 const createAsks = (db) => {
   let asks = []
 
-  const all = () => {
-    asks = db.load().map(createAsk)
-    return asks
+  const all = async () => {
+    try {
+      const asks = await db.load()
+      return asks.map(createAsk)
+    } catch (e) {
+      throw (e)
+    }
   }
 
-  const create = (attributes) => {
+  const create = async (attributes) => {
     const { ask, askee, status } = attributes
     const timestamp = attributes.timestamp || Date.now()
     const newAsk = createAsk({ timestamp, ask, askee, status })
 
     try {
-      db.save(newAsk.attrs())
+      await db.save(newAsk.attrs())
       return newAsk
     } catch (e) {
       throw (e)

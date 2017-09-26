@@ -1,28 +1,32 @@
 const browserRepository = (api = window.localStorage) => {
   return {
-    load () {
-      let retVal = []
+    load: () => new Promise((resolve, reject) => {
+      try {
+        let retVal = []
 
-      for (let i = 0, l = api.length; i < l; i++) {
-        const key = api.key(i)
-        if (key !== 'loglevel') {
-          retVal = retVal.concat(JSON.parse(api.getItem(key)))
+        for (let i = 0, l = api.length; i < l; i++) {
+          const key = api.key(i)
+          if (key !== 'loglevel') {
+            retVal = retVal.concat(JSON.parse(api.getItem(key)))
+          }
         }
+
+        return resolve(retVal)
+      } catch (e) {
+        return reject(e)
       }
+    }),
 
-      return retVal
-    },
-
-    save (item) {
+    save: (item) => new Promise((resolve, reject) => {
       const newItem = Object.assign({ timestamp: Date.now() }, item)
 
       try {
         api.setItem(newItem.timestamp, JSON.stringify(newItem))
-        return true
+        return resolve(true)
       } catch (e) {
-        throw (e)
+        return reject(e)
       }
-    },
+    }),
   }
 }
 

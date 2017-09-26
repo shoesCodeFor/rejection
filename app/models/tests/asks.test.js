@@ -5,11 +5,11 @@ const browserStore = require('../../browserStore')
 const data = require('../../tests/helpers/data')
 const store = require('../../tests/helpers/testStore')
 
-const api = store(data)
+const api = store.api(data)
 
 test('-- app/models/asks', (expect) => expect.end())
 
-test('it loads all asks', (expect) => {
+test.only('it loads all asks', (expect) => {
   const expected = data
   const Repository = browserStore(api)
   const Asks = createAsks(Repository)
@@ -94,7 +94,7 @@ test('------ returns 0 when', (expect) => expect.end())
 test('it has no rejections in the db', (expect) => {
   const expected = 0
   const streakData = [{ status: 'Accepted' }]
-  const Repository = browserStore(store(streakData))
+  const Repository = browserStore(store.api(streakData))
   const Asks = createAsks(Repository)
 
   const actual = Asks.streak()
@@ -190,7 +190,7 @@ test('it has a current streak and 1+ rejecteds today', (expect) => {
       timestamp: new Date('2017-09-09').getTime(),
     },
   ]
-  const Repository = browserStore(store(streakData))
+  const Repository = browserStore(store.api(streakData))
   const Asks = createAsks(Repository)
 
   const actual = Asks.streak(today)
