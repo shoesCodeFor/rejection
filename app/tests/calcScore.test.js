@@ -1,7 +1,7 @@
 const test = require('tape')
 const calcScore = require('../calcScore')
 
-test('-- app/calcScore', (expect) => { expect.end() })
+test('-- app/calcScore', (expect) => expect.end())
 
 test('it calculates the score', (expect) => {
   const expected = 21

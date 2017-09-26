@@ -1,15 +1,9 @@
-const calc = (statuses) => {
-  return statuses.reduce((acc, status) => {
-    if (status === 'Accepted') {
-      return acc + 1
-    }
-
-    if (status === 'Rejected') {
-      return acc + 10
-    }
-
-    return acc + 0
-  }, 0)
+const POINTS = {
+  Accepted: 1,
+  Rejected: 10,
 }
+
+const calc = (statuses) =>
+  statuses.reduce((acc, status) => acc + (POINTS[status] || 0), 0)
 
 module.exports = calc
