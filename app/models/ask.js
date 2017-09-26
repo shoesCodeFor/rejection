@@ -1,13 +1,10 @@
-const SCORES = {
-  'Accepted': 1,
-  'Rejected': 10,
-}
+const lookupScore = require('../config/scores')
 
 const createAsk = (attributes = {}) => {
   const ask = Object.assign({}, attributes)
 
   const attrs = () => ask
-  const score = () => (SCORES[ask.status] || 0)
+  const score = () => lookupScore(ask.status)
 
   return {
     timestamp: ask.timestamp,
