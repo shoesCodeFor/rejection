@@ -1,0 +1,51 @@
+Features
+--------
+
+  - Create Ask results
+  - Score
+  - Streak
+  - History list
+  - Persist Asks
+
+
+Events
+------
+
+onAppStart:
+pipe(
+  loadAsks,
+  updateState
+)
+
+onFormSubmit:
+pipe(
+  createAsk,
+  updateDB,
+  updateState,
+  clearForm,
+)
+
+onTabClick:
+pipe(
+  updateState
+)
+
+
+View
+----
+
+onStateChange:
+pipe(
+  updateScore,
+  updateStreak,
+  updateHistoryList,
+  displayTab
+)
+
+
+App State
+---------
+currentTab: 'form' | 'history'
+asks: [
+  { timestamp: integer, ask: string, askee: string },
+]
